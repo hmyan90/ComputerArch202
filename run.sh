@@ -1,3 +1,9 @@
 #!/bin/bash
 
-docker run --privileged hmyan19901001/cython perf stat python /home/test.py "$1" "$2"
+#display_help() {
+#  echo ""
+
+#}
+
+docker run --privileged hyan90 perf stat python /home/test.py "$1" "$2"
+
