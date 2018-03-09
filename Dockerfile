@@ -8,7 +8,8 @@ ADD *B.py lib1T.py /home/
 ADD test.py run.sh copy.sh /home/
 RUN chmod +x /home/run.sh
 RUN chmod +x /home/copy.sh
+RUN bash -c "/home/copy.sh"
 
-ENTRYPOINT ["/bin/bash", "/home/copy.sh"]
+#ENTRYPOINT ["/bin/bash", "/home/copy.sh"]
 
 

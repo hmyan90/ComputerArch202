@@ -1,5 +1,3 @@
 #!/bin/bash
 
-
-python setup.py build_ext "$1" "$2" --inplace
-#python /home/setup.py build_ext "$1" "$2" --inplace 
+docker exec hyan90 python /home/test.py "$1" "$2"
