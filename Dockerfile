@@ -6,4 +6,9 @@ RUN apt-get update && apt-get install -y vim python-dev python-pip gcc clang cyt
 WORKDIR /home
 ADD *B.py lib1T.py /home/
 ADD test.py run.sh copy.sh /home/
+RUN chmod +x /home/run.sh
+RUN chmod +x /home/copy.sh
+
+ENTRYPOINT ["/bin/bash", "/home/copy.sh"]
+
 
