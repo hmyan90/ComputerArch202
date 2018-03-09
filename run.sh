@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker exec hyan90 python /home/test.py "$1" "$2"
+docker run --privileged hmyan19901001/cython perf stat python /home/test.py "$1" "$2"
