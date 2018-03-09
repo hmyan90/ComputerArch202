@@ -13,6 +13,5 @@ cd hyan90_proj
 git clone https://github.com/hmyan90/ComputerArch202.git
 cd ComputerArch202
 sed -i "s/KERNEL_VERSION/${kernel_version}/g" Dockerfile
-cat Dockerfile
 docker build -t hyan90 .
 
