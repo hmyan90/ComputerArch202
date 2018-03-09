@@ -9,7 +9,5 @@ RUN chmod +x /home/run.sh
 RUN chmod +x /home/copy.sh
 RUN bash -c "/home/copy.sh"
 
-RUN echo 0 > /proc/sys/kernel/perf_event_paranoid
-
 
 
