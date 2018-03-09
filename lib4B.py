@@ -66,3 +66,138 @@ def require20():
     if _pygtk_2_0_dir not in sys.path:
         sys.path.insert(0, _pygtk_2_0_dir)
 
+__all__ = ['require']
+
+_our_dir = os.path.dirname(os.path.abspath(os.path.normpath(__file__)))
+_pygtk_2_0_dir = os.path.normpath('%s/gtk-2.0' % _our_dir)
+
+_pygtk_dir_pat = 'gtk-[0-9].[0-9]'
+
+_pygtk_required_version = None
+
+def _get_available_versions():
+    versions = {}
+    for dir in sys.path:
+        if not dir: 
+            dir = os.getcwd()
+            
+        if not os.path.isdir(dir):
+            continue
+        
+        # if the dir is a pygtk dir, skip it
+        if fnmatch.fnmatchcase(os.path.basename(dir), _pygtk_dir_pat):
+            continue  
+        
+        for filename in glob.glob(os.path.join(dir, _pygtk_dir_pat)):
+            pathname = os.path.join(dir, filename)
+
+            # skip non directories
+            if not os.path.isdir(pathname):
+                continue
+            
+            # skip empty directories
+            if not os.listdir(pathname):
+                continue
+            
+            if not versions.has_key(filename[-3:]):
+                versions[filename[-3:]] = pathname
+    return versions
+
+def require20():
+    if _pygtk_2_0_dir not in sys.path:
+        sys.path.insert(0, _pygtk_2_0_dir)
+
+def require20():
+    if _pygtk_2_0_dir not in sys.path:
+        sys.path.insert(0, _pygtk_2_0_dir)
+
+__all__ = ['require']
+
+_our_dir = os.path.dirname(os.path.abspath(os.path.normpath(__file__)))
+_pygtk_2_0_dir = os.path.normpath('%s/gtk-2.0' % _our_dir)
+
+_pygtk_dir_pat = 'gtk-[0-9].[0-9]'
+
+_pygtk_required_version = None
+
+def _get_available_versions():
+    versions = {}
+    for dir in sys.path:
+        if not dir:
+            dir = os.getcwd()
+
+        if not os.path.isdir(dir):
+            continue
+
+        # if the dir is a pygtk dir, skip it
+        if fnmatch.fnmatchcase(os.path.basename(dir), _pygtk_dir_pat):
+            continue
+
+        for filename in glob.glob(os.path.join(dir, _pygtk_dir_pat)):
+            pathname = os.path.join(dir, filename)
+
+            # skip non directories
+            if not os.path.isdir(pathname):
+                continue
+
+            # skip empty directories
+            if not os.listdir(pathname):
+                continue
+
+            if not versions.has_key(filename[-3:]):
+                versions[filename[-3:]] = pathname
+    return versions
+
+def require20():
+    if _pygtk_2_0_dir not in sys.path:
+        sys.path.insert(0, _pygtk_2_0_dir)
+
+def require20():
+    if _pygtk_2_0_dir not in sys.path:
+        sys.path.insert(0, _pygtk_2_0_dir)
+
+__all__ = ['require']
+
+_our_dir = os.path.dirname(os.path.abspath(os.path.normpath(__file__)))
+_pygtk_2_0_dir = os.path.normpath('%s/gtk-2.0' % _our_dir)
+
+_pygtk_dir_pat = 'gtk-[0-9].[0-9]'
+
+_pygtk_required_version = None
+
+def _get_available_versions():
+    versions = {}
+    for dir in sys.path:
+        if not dir:
+            dir = os.getcwd()
+
+        if not os.path.isdir(dir):
+            continue
+
+        # if the dir is a pygtk dir, skip it
+        if fnmatch.fnmatchcase(os.path.basename(dir), _pygtk_dir_pat):
+            continue
+
+        for filename in glob.glob(os.path.join(dir, _pygtk_dir_pat)):
+            pathname = os.path.join(dir, filename)
+
+            # skip non directories
+            if not os.path.isdir(pathname):
+                continue
+
+            # skip empty directories
+            if not os.listdir(pathname):
+                continue
+
+            if not versions.has_key(filename[-3:]):
+                versions[filename[-3:]] = pathname
+    return versions
+
+
+def require20():
+    if _pygtk_2_0_dir not in sys.path:
+        sys.path.insert(0, _pygtk_2_0_dir)
+
+def require20():
+    if _pygtk_2_0_dir not in sys.path:
+        sys.path.insert(0, _pygtk_2_0_dir)

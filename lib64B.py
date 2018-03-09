@@ -5794,38 +5794,6 @@ def parse_apt_policy():
 
     return data
 
-def guess_release_from_apt(origin='Debian', component='main',
-                           ignoresuites=('experimental'),
-                           label='Debian',
-                           alternate_olabels={'Debian Ports':'ftp.debian-ports.org'}):
-    releases = parse_apt_policy()
-
-    if not releases:
-        return None
-
-    # We only care about the specified origin, component, and label
-    releases = [x for x in releases if (
-        x[1].get('origin', '') == origin and
-        x[1].get('component', '') == component and
-        x[1].get('label', '') == label) or (
-        x[1].get('origin', '') in alternate_olabels and
-        x[1].get('label', '') == alternate_olabels.get(x[1].get('origin', '')))]
-
-    # Check again to make sure we didn't wipe out all of the releases
-    if not releases:
-        return None
-    
-    releases.sort(key=lambda tuple: tuple[0],reverse=True)
-
-    # We've sorted the list by descending priority, so the first entry should
-    # be the "main" release in use on the system
-
-    max_priority = releases[0][0]
-    releases = [x for x in releases if x[0] == max_priority]
-    releases.sort(key=release_index)
-
-    return releases[0][1]
-
 
 # XXX: Update as needed
 # This should really be included in apt-cache policy output... it is already
@@ -5999,57 +5967,5 @@ def compare_release(x, y):
     except TypeError:
         return (suite_x_i > suite_y_i) - (suite_x_i < suite_y_i)
 
-def parse_apt_policy():
-    data = []
-    
-    C_env = os.environ.copy(); C_env['LC_ALL'] = 'C'
-    policy = subprocess.Popen(['apt-cache','policy'],
-                              env=C_env,
-                              stdout=subprocess.PIPE,
-                              stderr=subprocess.PIPE,
-                              close_fds=True).communicate()[0].decode('utf-8')
-    for line in policy.split('\n'):
-        line = line.strip()
-        m = re.match(r'(-?\d+)', line)
-        if m:
-            priority = int(m.group(1))
-        if line.startswith('release'):
-            bits = line.split(' ', 1)
-            if len(bits) > 1:
-                data.append( (priority, parse_policy_line(bits[1])) )
-
-    return data
-
-def guess_release_from_apt(origin='Debian', component='main',
-                           ignoresuites=('experimental'),
-                           label='Debian',
-                           alternate_olabels={'Debian Ports':'ftp.debian-ports.org'}):
-    releases = parse_apt_policy()
-
-    if not releases:
-        return None
-
-    # We only care about the specified origin, component, and label
-    releases = [x for x in releases if (
-        x[1].get('origin', '') == origin and
-        x[1].get('component', '') == component and
-        x[1].get('label', '') == label) or (
-        x[1].get('origin', '') in alternate_olabels and
-        x[1].get('label', '') == alternate_olabels.get(x[1].get('origin', '')))]
-
-    # Check again to make sure we didn't wipe out all of the releases
-    if not releases:
-        return None
-    
-    releases.sort(key=lambda tuple: tuple[0],reverse=True)
-
-    # We've sorted the list by descending priority, so the first entry should
-    # be the "main" release in use on the system
-
-    max_priority = releases[0][0]
-    releases = [x for x in releases if x[0] == max_priority]
-    releases.sort(key=release_index)
-
-    return releases[0][1]
 
 
